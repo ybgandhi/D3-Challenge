@@ -105,6 +105,60 @@ let chosedYAxis = "healthcare";
         .text("Household Income (Median)")
         .classed("inactive", true);
     
+    // Create group for 3 y-axis labels
+    const ylabelsGroup = chartGroup.append("g");
+
+    const healthcareLabel = ylabelsGroup.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -(height / 2))
+        .attr("y", -40)
+        .attr("value", "healthcare") // value to grab for event listener
+        .text("Lacks Healthcare (%)")
+        .classed("active", true);
+
+    const smokesLabel = ylabelsGroup.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -(height / 2))
+        .attr("y", -60)
+        .attr("value", "smokes") // value to grab for event listener
+        .text("Smokes (%)")
+        .classed("inactive", true);
+
+    const obeseLabel = ylabelsGroup.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -(height / 2))
+        .attr("y", -80)
+        .attr("value", "obesity") // value to grab for event listener
+        .text("Obese (%)")
+        .classed("inactive", true);
+    // initial tooltips
+    circlesGroup = updateToolTip(circlesGroup, chosenXAxis, chosenYAxis);
+
+    // x axis labels event listener
+    xlabelsGroup.selectAll("text")
+        .on("click",function(){
+        // get value of selection
+        const value = d3.select(this).attr("value"):
+        if (value !== chosenXAxis) {
+
+            // replaces chosenAxis with value
+            chosenXAxis = value;
+
+            // update x scale for new data
+            xLinearScale = xScale(MMP_data, chosenXAxis);
+
+            // update x axis with transition
+            xAxis = renderXAxes(xLinearScale, xAxis);
+
+            // update circles with x values
+            circlesXY = renderXCircles(circlesXY, xLinearScale, chosenXAxis);
+
+            // update circles text with x values
+            circlesText = renderXText(circlesText, xLinearScale, chosenXAxis);
+            
+        }
+        })
+    
 })
 
 
