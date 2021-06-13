@@ -30,7 +30,7 @@ var chartGroup = svg.append("g")
 let chosenXAxis = "Proverty";
 let chosenYAxis = "healthcare";
 
-// aysync function for cleaner style
+// aysync function for cleaner style - chart script
 (async function(){
 
     // Load data from data.csv to MMP_data (major metro paper dataset)
@@ -138,7 +138,7 @@ let chosenYAxis = "healthcare";
     xlabelsGroup.selectAll("text")
         .on("click",function(){
         // get value of selection
-        const value = d3.select(this).attr("value"):
+        const value = d3.select(this).attr("value");
         if (value !== chosenXAxis) {
 
             // replaces chosenAxis with value
@@ -229,7 +229,7 @@ let chosenYAxis = "healthcare";
                     .classed("active", false)
                     .classed("inactive", true);
             }
-            else if (chosenYAxis === "obesity")
+            else if (chosenYAxis === "obesity") {
                 healthcareLabel
                 .classed("active", false)
                 .classed("inactive", true);
@@ -242,19 +242,18 @@ let chosenYAxis = "healthcare";
             }
             else {
                 healthcareLabel
-                .classed("active", false)
-                .classed("inactive", true);
+                .classed("active", true)
+                .classed("inactive", false);
                 smokesLabel
                 .classed("active", false)
                 .classed("inactive", true);
                 obeseLabel
-                .classed("active", true)
-                .classed("inactive", false);   
+                .classed("active", false)
+                .classed("inactive", true);   
             }
-
         }
-        })
-})
+    });
+})()
 
 
-})
+
