@@ -50,7 +50,19 @@ let chosedYAxis = "healthcare";
     let xLinearScale = xScale(MMP_data, chosenXAxis);
     let yLinearScale = yScale(MMP_data, chosenYAxis);
 
-    var state
+    // set axis functions
+    let bottomAxis = d3.axisBottom(xLinearScale);
+    let leftAxis = d3.axisLeft(yLinearScale);
+
+    // Append x and y axes to chart
+    let xAxis = chartGroup.append("g")
+        .attr("transform", 'translate(0, ${height})')
+        .call(bottomAxis);
+    
+    let yAxis = chartGroup.append("g")
+        .call(leftAxis);
+    
+        
 })
 
 
