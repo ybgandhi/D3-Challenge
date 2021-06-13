@@ -62,7 +62,25 @@ let chosedYAxis = "healthcare";
     let yAxis = chartGroup.append("g")
         .call(leftAxis);
     
+    // create Scatterplot and append initial citcles
+    let circlesGroup = chartGroup.select("g circle")
+        .data(MMP_data)
+        .enter()
+        .append("g");
+    
+    let circlesXY = circlesGroup.append("circle")
+        .attr("cx", d=> xLinearScale(d[chosedXAxis]))
+        .attr("cy", d=> yLinearScale(d[chosenYAxis]))
+        .attr("r", 15)
+        .classed("stateCircle", true);
+
+    let circleText = circlesGroup.append("text")
+        .text(d => d.abbr)
+        .attr("dx", d=> xLinearScale(d[chosedXAxis]))
+        .attr("dy", d=> yLinearScale(d[chosedYAxis])+ 5)
+        .classed("stateText", "true");
         
+    // create group for 3 x-axis labels
 })
 
 
