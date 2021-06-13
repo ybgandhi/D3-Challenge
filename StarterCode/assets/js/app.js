@@ -26,11 +26,20 @@ var svg = d3
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
-  
-// Load data from data.csv to MMP_data (major metro paper dataset)
-d3.csv("./data/data.csv").then(function(MMP_data) {
+// Initial Parameters of Scatter Plot
+let chosedXAxis = "Proverty";
+let chosedYAxis = "healthcare";
 
+// aysync function for cleaner style
+(async function(){
+
+    // Load data from data.csv to MMP_data (major metro paper dataset)
+    const MMP_data = await d3.csv("assets/data/data.csv");
+    
     console.log("csv", MMP_data);
 
     var state
+})
+
+
 })
