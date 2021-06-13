@@ -27,8 +27,8 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
 // Initial Parameters of Scatter Plot
-let chosedXAxis = "Proverty";
-let chosedYAxis = "healthcare";
+let chosenXAxis = "Proverty";
+let chosenYAxis = "healthcare";
 
 // aysync function for cleaner style
 (async function(){
@@ -69,15 +69,15 @@ let chosedYAxis = "healthcare";
         .append("g");
     
     let circlesXY = circlesGroup.append("circle")
-        .attr("cx", d=> xLinearScale(d[chosedXAxis]))
+        .attr("cx", d=> xLinearScale(d[chosenXAxis]))
         .attr("cy", d=> yLinearScale(d[chosenYAxis]))
         .attr("r", 15)
         .classed("stateCircle", true);
 
     let circleText = circlesGroup.append("text")
         .text(d => d.abbr)
-        .attr("dx", d=> xLinearScale(d[chosedXAxis]))
-        .attr("dy", d=> yLinearScale(d[chosedYAxis])+ 5)
+        .attr("dx", d=> xLinearScale(d[chosenXAxis]))
+        .attr("dy", d=> yLinearScale(d[chosenYAxis])+ 5)
         .classed("stateText", "true");
 
     // create group for 3 x-axis labels
@@ -155,9 +155,47 @@ let chosedYAxis = "healthcare";
 
             // update circles text with x values
             circlesText = renderXText(circlesText, xLinearScale, chosenXAxis);
-            
+
+            // update tooltups with respective x value information
+            circlesGroup = updateToolTip(circlesGroup, chosenXAxis, chosenYAxis);
+
+            // changes classes to cahnge bold text
+            if (chosenXAxis === "age") {
+                povertyLabel
+                    .classed("active",false)
+                    .classed("inactive", true);
+                ageLabel
+                    .classed("active",true)
+                    .classed("inactive", false);
+                incomeLabel
+                    .classed("active",false)
+                    .classed("inactive", true);
+            }
+            else if (chosenXAxis === "income"){
+                povertyLabel
+                    .classed("active",false)
+                    .classed("inactive", true);
+                ageLabel
+                    .classed("active",false)
+                    .classed("inactive", true);
+                incomeLabel
+                    .classed("active",true)
+                    .classed("inactive", false);
+            }
+            else {
+                povertyLabel
+                    .classed("active",true)
+                    .classed("inactive", false);
+                ageLabel
+                    .classed("active",false)
+                    .classed("inactive", true);
+                incomeLabel
+                    .classed("active",false)
+                    .classed("inactive", true); 
+            }
         }
-        })
+    });
+    
     
 })
 
