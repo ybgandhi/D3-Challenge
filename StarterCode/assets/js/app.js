@@ -134,7 +134,7 @@ let chosenYAxis = "healthcare";
     // initial tooltips
     circlesGroup = updateToolTip(circlesGroup, chosenXAxis, chosenYAxis);
 
-    // x axis labels event listener
+    // x axis event listener script
     xlabelsGroup.selectAll("text")
         .on("click",function(){
         // get value of selection
@@ -196,7 +196,8 @@ let chosenYAxis = "healthcare";
         }
     });
     
-    
+    // y axis event listener script
+    ylabelsGroup.selectAll("text")
 })
 
 
