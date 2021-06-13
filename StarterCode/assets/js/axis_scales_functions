@@ -45,3 +45,22 @@ function renderYAxes(newYScale, yAxis) {
     return yAxis;
 }
 
+// function to update circle group with transition to new cirlces for X and Y coordinates
+function renderXCircles(circlesGroup, newXScale, chosenXAxis) {
+
+    circlesGroup.transition()
+        .duration(750)
+        .attr("cx", d => newXScale(d[chosenXAxis]));
+    
+    return circlesGroup;
+}
+
+// function to update circles text with transition from new circles X and Y coordinates
+function renderYCircles(circlesGroup, newYScale, chosenYAxis) {
+
+    circlesGroup.transition()
+        .duration(750)
+        .attr("cy", d => newYScale(d[chosenYAxis]));
+    
+    return circlesGroup;
+}

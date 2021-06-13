@@ -14,6 +14,12 @@ var chartMargin = {
 var chartWidth = svgWidth - chartMargin.left - chartMargin.right;
 var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
 
+// append div class to the scatter element
+let chart = d3.select('#scatter')
+    .append('div')
+    .classed('chart', true);
+
+
 // Select body, append SVG area to it, and set the dimensions
 var svg = d3
   .select("body")
@@ -28,7 +34,7 @@ var chartGroup = svg.append("g")
 
 // Initial Parameters of Scatter Plot
 let chosenXAxis = "Proverty";
-let chosenYAxis = "healthcare";
+let chosenYAxis = "Healthcare";
 
 // aysync function for cleaner style - chart script
 (async function(){
