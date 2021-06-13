@@ -1,13 +1,13 @@
 // Define SVG area dimensions
 var svgWidth = 960;
-var svgHeight = 660;
+var svgHeight = 500;
 
 // Define the chart's margins as an object
 var chartMargin = {
-  top: 30,
-  right: 30,
-  bottom: 30,
-  left: 30
+  top: 20,
+  right: 40,
+  bottom: 80,
+  left: 100
 };
 
 // Define dimensions of the chart area
@@ -37,10 +37,12 @@ let chosenXAxis = "Proverty";
 let chosenYAxis = "Healthcare";
 
 // aysync function for cleaner style - chart script
-(async function(){
 
-    // Load data from data.csv to MMP_data (major metro paper dataset)
-    const MMP_data = await d3.csv("assets/data/data.csv");
+
+// Load data from data.csv to MMP_data (major metro paper dataset)
+d3.csv('./assets/data/data.csv').then(function(MMP_data) {
+
+    console.log(MMP_data);    
     
     // parse through data set as numbers
     MMP_data.forEach(function(data){
@@ -260,7 +262,8 @@ let chosenYAxis = "Healthcare";
             }
         }
     });
-})()
+});
+
 
 
 

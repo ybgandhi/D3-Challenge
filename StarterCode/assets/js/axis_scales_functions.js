@@ -131,14 +131,14 @@ function updateToolTip(circlesGroup, chosenXAxis, chosenYAxis) {
   
     circlesGroup.call(toolTip);
   
-    // mouseover event
-    circlesGroup.on("mouseover", function(data) {
-        toolTip.show(data, this);
-    })
-      // onmouseout event
-      .on("mouseout", function(data) {
-          toolTip.hide(data, this);
-      });
+    // // mouseover event
+    // circlesGroup.on("mouseover", function(MMP_data) {
+    //    toolTip.show(MMP_data, this);
+    // })
+    //   // onmouseout event
+    //   .on("mouseout", function(MMP_data) {
+    //       toolTip.hide(MMP_data, this);
+    //   });
   
   return circlesGroup;
 }
