@@ -1,3 +1,25 @@
 // functions used to update axis and scales based on selections
 
-// function 
+// function used for updating x-scale const when clicked on axis label
+function xScale(csvData, chosenAxis) {
+    // create scales
+    let xLinearScale = d3.scaleLinear()
+        .domain([d3.min(csvData, d => d[chosenAxis]) * 0.9,
+            d3.max(csvData, d => d[chosenAxis]) * 1.1
+        ])
+        .range([0, width]);
+    return xLinearScale;
+}
+
+// function used for updating y-scale const when click on axis label
+function yScale(csvData, chosenYAxis) {
+    // create scales
+    let yLinearScale = d3.scaleLinear()
+        .domain([d3.min(csvData, d => d[chosenYxis]) - 1,
+        d3.max(csvData, d => d[chosenYxis]) + 1
+    ])
+    .range([height, 0]);
+
+return yLinearScale;
+}
+
