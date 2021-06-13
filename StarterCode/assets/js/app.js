@@ -62,7 +62,7 @@ let chosenYAxis = "Healthcare";
 
     // Append x and y axes to chart
     let xAxis = chartGroup.append("g")
-        .attr("transform", 'translate(0, ${height})')
+        .attr("transform", `translate(0, ${chartHeight})`)
         .call(bottomAxis);
     
     let yAxis = chartGroup.append("g")
@@ -88,7 +88,7 @@ let chosenYAxis = "Healthcare";
 
     // create group for 3 x-axis labels
     const xlabelsGroup = chartGroup.append("g")
-        .attr("transform", `translate(${width / 2}, ${height})`);
+        .attr("transform", `translate(${chartWidth / 2}, ${chartHeight})`);
     
     const povertyLabel = xlabelsGroup.append("text")
         .attr("x", 0)
@@ -116,7 +116,7 @@ let chosenYAxis = "Healthcare";
 
     const healthcareLabel = ylabelsGroup.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("x", -(height / 2))
+        .attr("x", -(chartHeight / 2))
         .attr("y", -40)
         .attr("value", "healthcare") // value to grab for event listener
         .text("Lacks Healthcare (%)")
@@ -124,7 +124,7 @@ let chosenYAxis = "Healthcare";
 
     const smokesLabel = ylabelsGroup.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("x", -(height / 2))
+        .attr("x", -(chartHeight / 2))
         .attr("y", -60)
         .attr("value", "smokes") // value to grab for event listener
         .text("Smokes (%)")
@@ -132,7 +132,7 @@ let chosenYAxis = "Healthcare";
 
     const obeseLabel = ylabelsGroup.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("x", -(height / 2))
+        .attr("x", -(chartHeight / 2))
         .attr("y", -80)
         .attr("value", "obesity") // value to grab for event listener
         .text("Obese (%)")
