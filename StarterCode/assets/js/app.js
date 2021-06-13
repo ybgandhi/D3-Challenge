@@ -36,7 +36,19 @@ let chosedYAxis = "healthcare";
     // Load data from data.csv to MMP_data (major metro paper dataset)
     const MMP_data = await d3.csv("assets/data/data.csv");
     
-    console.log("csv", MMP_data);
+    // parse through data set as numbers
+    MMP_data.forEach(function(data){
+        data.poverty = +data.poverty;
+        data.healthcare = +data.healthcare;
+        data.age = +data.age;
+        data.smoke = +data.smoke;
+        data.obesity = +data.obesity;
+        data.income = +data.income;
+    });
+
+    // set scale functions
+    let xLinearScale = xScale(MMP_data, chosenXAxis);
+    let yLinearScale = yScale(MMP_data, chosenYAxis);
 
     var state
 })
