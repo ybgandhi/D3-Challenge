@@ -198,6 +198,62 @@ let chosenYAxis = "healthcare";
     
     // y axis event listener script
     ylabelsGroup.selectAll("text")
+        .on("click", function(){
+        // get value of selection
+        const value = d3.select(this).attr("value");
+        if (value !== chosenYAxis) {
+
+            // replace chosenYAxis with value
+            chosenYAxis = value;
+
+            // update y scale for data and axis with transition
+            yLinearScale = yScale(MMP_data, chosenYAxis);
+            yAxis = renderYAxes(yLinearScale, yAxis);
+
+            // update circles with y value and text respective to y value 
+            circlesXY = renderYCircles(circlesXY, yLinearScale, chosenYAxis);
+            circlesText = renderYText(circlesText, yLinearScale, chosenYAxis);
+
+            // update tooltips with info
+            circlesGroup = updateToolTip(circlesGroup, chosenXAxis,chosenYAxis);
+
+            // changes classes to update text to bold
+            if (chosenYAxis ==="smoke") {
+                healthcareLabel
+                    .classed("active", false)
+                    .classed("inactive", true);
+                smokesLabel
+                    .classed("active", true)
+                    .classed("inactive", false);
+                obeseLabel
+                    .classed("active", false)
+                    .classed("inactive", true);
+            }
+            else if (chosenYAxis === "obesity")
+                healthcareLabel
+                .classed("active", false)
+                .classed("inactive", true);
+                smokesLabel
+                .classed("active", false)
+                .classed("inactive", true);
+                obeseLabel
+                .classed("active", true)
+                .classed("inactive", false);   
+            }
+            else {
+                healthcareLabel
+                .classed("active", false)
+                .classed("inactive", true);
+                smokesLabel
+                .classed("active", false)
+                .classed("inactive", true);
+                obeseLabel
+                .classed("active", true)
+                .classed("inactive", false);   
+            }
+
+        }
+        })
 })
 
 
