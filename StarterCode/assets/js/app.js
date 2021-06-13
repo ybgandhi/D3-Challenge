@@ -15,14 +15,14 @@ var chartWidth = svgWidth - chartMargin.left - chartMargin.right;
 var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
 
 // append div class to the scatter element
-let chart = d3.select('scatter')
-    .append('div')
-    .classed('chart', true);
+//let chart = d3.select('scatter')
+//    .append('div')
+//    .classed('chart', true);
 
 
 // Select body, append SVG area to it, and set the dimensions
 var svg = d3
-  .select("body")
+  .select("scatter")
   .append("svg")
   .attr("height", svgHeight + 40) // additional padding for 3rd label 
   .attr("width", svgWidth);
@@ -80,7 +80,7 @@ let chosenYAxis = "Healthcare";
         .attr("r", 15)
         .classed("stateCircle", true);
 
-    let circleText = circlesGroup.append("text")
+    let circlesText = circlesGroup.append("text")
         .text(d => d.abbr)
         .attr("dx", d=> xLinearScale(d[chosenXAxis]))
         .attr("dy", d=> yLinearScale(d[chosenYAxis])+ 5)
@@ -137,6 +137,7 @@ let chosenYAxis = "Healthcare";
         .attr("value", "obesity") // value to grab for event listener
         .text("Obese (%)")
         .classed("inactive", true);
+    
     // initial tooltips
     circlesGroup = updateToolTip(circlesGroup, chosenXAxis, chosenYAxis);
 
