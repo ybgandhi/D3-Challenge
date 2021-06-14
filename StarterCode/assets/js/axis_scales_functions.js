@@ -4,7 +4,7 @@
 function xScale(csvData, chosenXAxis) {
     // create scales
     let xLinearScale = d3.scaleLinear()
-        .domain([d3.min(csvData, d => d[chosenXAxis]) * 0.8,
+        .domain([d3.min(csvData, d => d[chosenXAxis]) * 1,
             d3.max(csvData, d => d[chosenXAxis]) * 1.2])
         .range([0, chartWidth]);
     return xLinearScale;
@@ -14,11 +14,11 @@ function xScale(csvData, chosenXAxis) {
 function yScale(csvData, chosenYAxis) {
     // create scales
     let yLinearScale = d3.scaleLinear()
-        .domain([d3.min(csvData, d => d[chosenYAxis]) * 0.8,
+        .domain([d3.min(csvData, d => d[chosenYAxis]) * 1,
             d3.max(csvData, d => d[chosenYAxis]) *1.2])
         .range([chartHeight, 0]);
 
-return yLinearScale;
+    return yLinearScale;
 }
 
 // function to update xAxis const when click on axis label
@@ -131,20 +131,20 @@ function updateToolTip(circlesGroup, chosenXAxis, chosenYAxis) {
   
     circlesGroup.call(toolTip);
   
-    // mouseover event
-    circlesGroup.on("mouseover", function(data) {
-        toolTip.show(data, this);
-        circlesGroup.append("circle")
-            .attr("cx", d3.event.pageX)
-            .attr("cy", d3.event.PageY)
-            .attr("r", 15)
-            .attr("stroke", "black")
-            .attr("fill", "none");
-    })
-    //   // onmouseout event
-        .on("mouseout", function(data) {
-            toolTip.hide(data, this);
-        });
+    // // mouseover event
+    // circlesGroup.on("mouseover", function(data) {
+    //     toolTip.show(data, this);
+    //     circlesGroup.append("circle")
+    //         .attr("cx", d3.event.pageX)
+    //         .attr("cy", d3.event.PageY)
+    //         .attr("r", 15)
+    //         .attr("stroke", "black")
+    //         .attr("fill", "none");
+    // })
+    // //   // onmouseout event
+    //     .on("mouseout", function(data) {
+    //         toolTip.hide(data, this);
+    //     });
   
 return circlesGroup;
 }

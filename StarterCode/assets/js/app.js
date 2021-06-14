@@ -33,10 +33,10 @@ var svg = d3
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
-d3.select("body")
-    .append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
+//d3.select("body")
+//    .append("div")
+//    .attr("class", "tooltip")
+//    .style("opacity", 0);
 
 // Initial Parameters of Scatter Plot
 let chosenXAxis = "proverty";
@@ -78,7 +78,7 @@ let chosenYAxis = "healthcare";
         .call(leftAxis);
     
     // create Scatterplot and append initial circles
-    let circlesGroup = chartGroup.select("g circle")
+    let circlesGroup = chartGroup.selectAll("g circle")
         .data(MMP_data)
         .enter()
         .append("g");
