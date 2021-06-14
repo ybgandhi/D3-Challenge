@@ -115,9 +115,9 @@ function updateToolTip(circlesGroup, chosenXAxis, chosenYAxis) {
       ypercentsign = "%";
     }
   
-    const toolTip = d3.tip()
-      .attr("class", "d3-tip")
-      .offset([50, -75])
+    var toolTip = d3.tip()
+      .attr("class", "tooltop")
+      .offset([80, -60])
       .html(function(d) {
         if (chosenXAxis === "income"){
             let incomelevel = formatter.format(d[chosenXAxis]);
@@ -131,15 +131,21 @@ function updateToolTip(circlesGroup, chosenXAxis, chosenYAxis) {
   
     circlesGroup.call(toolTip);
   
-    // // mouseover event
-    // circlesGroup.on("mouseover", function(MMP_data) {
-    //    toolTip.show(MMP_data, this);
-    // })
+    // mouseover event
+    circlesGroup.on("mouseover", function(data) {
+        toolTip.show(data, this);
+        circlesGroup.append("circle")
+            .attr("cx", d3.event.pageX)
+            .attr("cy", d3.event.PageY)
+            .attr("r", 15)
+            .attr("stroke", "black")
+            .attr("fill", "none");
+    })
     //   // onmouseout event
-    //   .on("mouseout", function(MMP_data) {
-    //       toolTip.hide(MMP_data, this);
-    //   });
+        .on("mouseout", function(data) {
+            toolTip.hide(data, this);
+        });
   
-  return circlesGroup;
+return circlesGroup;
 }
   

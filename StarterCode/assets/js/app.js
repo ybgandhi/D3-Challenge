@@ -13,6 +13,7 @@ var chartMargin = {
 // Define dimensions of the chart area
 var chartWidth = svgWidth - chartMargin.left - chartMargin.right;
 var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
+var chart = d3.select("#scatter").append("div").classed("chart", true);
 
 // append div class to the scatter element
 //let chart = d3.select('scatter')
@@ -22,7 +23,7 @@ var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
 
 // Select body, append SVG area to it, and set the dimensions
 var svg = d3
-  .select("scatter")
+  .select("body")
   .append("svg")
   .attr("height", svgHeight + 40) // additional padding for 3rd label 
   .attr("width", svgWidth);
@@ -32,16 +33,21 @@ var svg = d3
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
+d3.select("body")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
 // Initial Parameters of Scatter Plot
-let chosenXAxis = "Proverty";
-let chosenYAxis = "Healthcare";
+let chosenXAxis = "proverty";
+let chosenYAxis = "healthcare";
 
 // aysync function for cleaner style - chart script
-
+(async function(){
 
 // Load data from data.csv to MMP_data (major metro paper dataset)
-d3.csv('./assets/data/data.csv').then(function(MMP_data) {
-
+// d3.csv('./assets/data/data.csv').then(function(MMP_data) {
+    var MMP_data = await d3.csv('./assets/data/data.csv');
     console.log(MMP_data);    
     
     // parse through data set as numbers
@@ -64,13 +70,14 @@ d3.csv('./assets/data/data.csv').then(function(MMP_data) {
 
     // Append x and y axes to chart
     let xAxis = chartGroup.append("g")
+        .classed("x-axis", true)
         .attr("transform", `translate(0, ${chartHeight})`)
         .call(bottomAxis);
     
     let yAxis = chartGroup.append("g")
         .call(leftAxis);
     
-    // create Scatterplot and append initial citcles
+    // create Scatterplot and append initial circles
     let circlesGroup = chartGroup.select("g circle")
         .data(MMP_data)
         .enter()
@@ -89,24 +96,24 @@ d3.csv('./assets/data/data.csv').then(function(MMP_data) {
         .classed("stateText", "true");
 
     // create group for 3 x-axis labels
-    const xlabelsGroup = chartGroup.append("g")
+    var xlabelsGroup = chartGroup.append("g")
         .attr("transform", `translate(${chartWidth / 2}, ${chartHeight})`);
     
-    const povertyLabel = xlabelsGroup.append("text")
+    var povertyLabel = xlabelsGroup.append("text")
         .attr("x", 0)
         .attr("y", 40)
         .attr("value", "poverty") // value to grab for event listener
         .text("In Poverty (%)")
         .classed("active", true);
     
-    const ageLabel = xlabelsGroup.append("text")
+    var ageLabel = xlabelsGroup.append("text")
         .attr("x", 0)
         .attr("y", 60)
         .attr("value", "age") // value to grab for event listener
         .text("Age (Median)")
         .classed("inactive", true);
     
-    const incomeLabel = xlabelsGroup.append("text")
+    var incomeLabel = xlabelsGroup.append("text")
         .attr("x", 0)
         .attr("y", 80)
         .attr("value", "income") // value to grab for event listener
@@ -114,9 +121,9 @@ d3.csv('./assets/data/data.csv').then(function(MMP_data) {
         .classed("inactive", true);
     
     // Create group for 3 y-axis labels
-    const ylabelsGroup = chartGroup.append("g");
+    var ylabelsGroup = chartGroup.append("g");
 
-    const healthcareLabel = ylabelsGroup.append("text")
+    var healthcareLabel = ylabelsGroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -(chartHeight / 2))
         .attr("y", -40)
@@ -124,7 +131,7 @@ d3.csv('./assets/data/data.csv').then(function(MMP_data) {
         .text("Lacks Healthcare (%)")
         .classed("active", true);
 
-    const smokesLabel = ylabelsGroup.append("text")
+    var smokesLabel = ylabelsGroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -(chartHeight / 2))
         .attr("y", -60)
@@ -132,7 +139,7 @@ d3.csv('./assets/data/data.csv').then(function(MMP_data) {
         .text("Smokes (%)")
         .classed("inactive", true);
 
-    const obeseLabel = ylabelsGroup.append("text")
+    var obeseLabel = ylabelsGroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -(chartHeight / 2))
         .attr("y", -80)
@@ -147,7 +154,7 @@ d3.csv('./assets/data/data.csv').then(function(MMP_data) {
     xlabelsGroup.selectAll("text")
         .on("click",function(){
         // get value of selection
-        const value = d3.select(this).attr("value");
+        var value = d3.select(this).attr("value");
         if (value !== chosenXAxis) {
 
             // replaces chosenAxis with value
@@ -209,7 +216,7 @@ d3.csv('./assets/data/data.csv').then(function(MMP_data) {
     ylabelsGroup.selectAll("text")
         .on("click", function(){
         // get value of selection
-        const value = d3.select(this).attr("value");
+        var value = d3.select(this).attr("value");
         if (value !== chosenYAxis) {
 
             // replace chosenYAxis with value
@@ -262,8 +269,9 @@ d3.csv('./assets/data/data.csv').then(function(MMP_data) {
             }
         }
     });
-});
 
+
+})()
 
 
 
