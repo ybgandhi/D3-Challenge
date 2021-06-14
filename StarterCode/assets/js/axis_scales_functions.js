@@ -4,8 +4,8 @@
 function xScale(csvData, chosenXAxis) {
     // create scales
     let xLinearScale = d3.scaleLinear()
-        .domain([d3.min(csvData, d => d[chosenXAxis]) * 1,
-            d3.max(csvData, d => d[chosenXAxis]) * 1.2])
+        .domain([d3.min(csvData, d => d[chosenXAxis]) * 0.9,
+            d3.max(csvData, d => d[chosenXAxis]) * 1.1])
         .range([0, chartWidth]);
     return xLinearScale;
 }
@@ -14,8 +14,8 @@ function xScale(csvData, chosenXAxis) {
 function yScale(csvData, chosenYAxis) {
     // create scales
     let yLinearScale = d3.scaleLinear()
-        .domain([d3.min(csvData, d => d[chosenYAxis]) * 1,
-            d3.max(csvData, d => d[chosenYAxis]) *1.2])
+        .domain([d3.min(csvData, d => d[chosenYAxis]) - 1,
+            d3.max(csvData, d => d[chosenYAxis]) + 1])
         .range([chartHeight, 0]);
 
     return yLinearScale;

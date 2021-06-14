@@ -47,7 +47,7 @@ let chosenYAxis = "healthcare";
 
 // Load data from data.csv to MMP_data (major metro paper dataset)
 // d3.csv('./assets/data/data.csv').then(function(MMP_data) {
-    var MMP_data = await d3.csv('./assets/data/data.csv');
+    const MMP_data = await d3.csv('./assets/data/data.csv');
     console.log(MMP_data);    
     
     // parse through data set as numbers
@@ -96,24 +96,24 @@ let chosenYAxis = "healthcare";
         .classed("stateText", "true");
 
     // create group for 3 x-axis labels
-    var xlabelsGroup = chartGroup.append("g")
+    const xlabelsGroup = chartGroup.append("g")
         .attr("transform", `translate(${chartWidth / 2}, ${chartHeight})`);
     
-    var povertyLabel = xlabelsGroup.append("text")
+    const povertyLabel = xlabelsGroup.append("text")
         .attr("x", 0)
         .attr("y", 40)
         .attr("value", "poverty") // value to grab for event listener
         .text("In Poverty (%)")
         .classed("active", true);
     
-    var ageLabel = xlabelsGroup.append("text")
+    const ageLabel = xlabelsGroup.append("text")
         .attr("x", 0)
         .attr("y", 60)
         .attr("value", "age") // value to grab for event listener
         .text("Age (Median)")
         .classed("inactive", true);
     
-    var incomeLabel = xlabelsGroup.append("text")
+    const incomeLabel = xlabelsGroup.append("text")
         .attr("x", 0)
         .attr("y", 80)
         .attr("value", "income") // value to grab for event listener
@@ -121,9 +121,9 @@ let chosenYAxis = "healthcare";
         .classed("inactive", true);
     
     // Create group for 3 y-axis labels
-    var ylabelsGroup = chartGroup.append("g");
+    const ylabelsGroup = chartGroup.append("g");
 
-    var healthcareLabel = ylabelsGroup.append("text")
+    const healthcareLabel = ylabelsGroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -(chartHeight / 2))
         .attr("y", -40)
@@ -131,7 +131,7 @@ let chosenYAxis = "healthcare";
         .text("Lacks Healthcare (%)")
         .classed("active", true);
 
-    var smokesLabel = ylabelsGroup.append("text")
+    const smokesLabel = ylabelsGroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -(chartHeight / 2))
         .attr("y", -60)
@@ -139,7 +139,7 @@ let chosenYAxis = "healthcare";
         .text("Smokes (%)")
         .classed("inactive", true);
 
-    var obeseLabel = ylabelsGroup.append("text")
+    const obeseLabel = ylabelsGroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -(chartHeight / 2))
         .attr("y", -80)
