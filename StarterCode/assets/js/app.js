@@ -55,7 +55,7 @@ let chosenYAxis = "healthcare";
         data.poverty = +data.poverty;
         data.healthcare = +data.healthcare;
         data.age = +data.age;
-        data.smoke = +data.smoke;
+        data.smokes = +data.smokes;
         data.obesity = +data.obesity;
         data.income = +data.income;
     });
@@ -234,7 +234,7 @@ let chosenYAxis = "healthcare";
             circlesGroup = updateToolTip(circlesGroup, chosenXAxis,chosenYAxis);
 
             // changes classes to update text to bold
-            if (chosenYAxis ==="smoke") {
+            if (chosenYAxis ==="smokes") {
                 healthcareLabel
                     .classed("active", false)
                     .classed("inactive", true);

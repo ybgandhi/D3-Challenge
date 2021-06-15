@@ -4,8 +4,8 @@
 function xScale(csvData, chosenXAxis) {
     // create scales
     let xLinearScale = d3.scaleLinear()
-        .domain([d3.min(csvData, d => d[chosenXAxis]) * 0.9,
-            d3.max(csvData, d => d[chosenXAxis]) * 1.1])
+        .domain([d3.min(csvData, d => d[chosenXAxis]) * 0.8,
+            d3.max(csvData, d => d[chosenXAxis]) * 1.2])
         .range([0, chartWidth]);
     return xLinearScale;
 }
@@ -17,7 +17,6 @@ function yScale(csvData, chosenYAxis) {
         .domain([d3.min(csvData, d => d[chosenYAxis]) - 1,
             d3.max(csvData, d => d[chosenYAxis]) + 1])
         .range([chartHeight, 0]);
-
     return yLinearScale;
 }
 
@@ -34,7 +33,7 @@ function renderXAxes(newXScale, xAxis) {
 
 // function to update yAxis const when click on axis label
 function renderYAxes(newYScale, yAxis) {
-    let leftAxis = d3.axisBottom(newYScale);
+    let leftAxis = d3.axisLeft(newYScale);
 
     yAxis.transition()
         .duration(1000)
